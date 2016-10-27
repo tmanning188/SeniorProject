@@ -23,17 +23,23 @@ void setup() {
     // set up the LCD's number of columns and rows:
   lcd.begin(16, 2);
   // Print a message to the LCD.
-  lcd.print("Git Gud!");
+  lcd.print("RPM:");
+  lcd.setCursor(0,1);
+  lcd.print("Speed:");
 }
 
 void loop() {
   // put your main code here, to run repeatedly:
-  
-    // set the cursor to column 0, line 1
-  // (note: line 1 is the second row, since counting begins with 0):
-  lcd.setCursor(0, 1);
-  // print the number of seconds since reset:
-  lcd.print(millis() / 1000);
+  double rpm;
+  double velocity;
 
+  for(rpm=0;rpm<450;rpm=rpm+50){
+    velocity=rpm/60*0.33274;
+    lcd.setCursor(5, 0);
+    lcd.print(rpm);
+    lcd.setCursor(7,1);
+    lcd.print(velocity);
+    delay(750);
+  }
   
 }
