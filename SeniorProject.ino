@@ -2,23 +2,23 @@
 
 LiquidCrystal lcd(12,8,2,4,5,6);
 
-  int lhPWM = 3;
-  int hlPWM = 9;
-  int lhPWM2 = 10;
-  int hlPWM2 = 11;
+  int highinput = 3;
+  int highinput2 = 9;
+  int lowinput = 10;
+  int lowinput2 = 11;
 
 void setup() {
   // put your setup code here, to run once:
 
-  pinMode(lhPWM, OUTPUT);
-  pinMode(hlPWM, OUTPUT);
-  pinMode(lhPWM2, OUTPUT);
-  pinMode(hlPWM2, OUTPUT);
+  pinMode(highinput, OUTPUT);
+  pinMode(highinput2, OUTPUT);
+  pinMode(lowinput, OUTPUT);
+  pinMode(lowinput2, OUTPUT);
 
-  analogWrite(lhPWM, 127);
-  analogWrite(hlPWM, 127);
-  analogWrite(lhPWM2, 127);
-  analogWrite(hlPWM2, 127);
+  analogWrite(highinput, 127);
+  analogWrite(highinput2, 127);
+  digitalWrite(lowinput, HIGH);
+  digitalWrite(lowinput2, HIGH);
 
     // set up the LCD's number of columns and rows:
   lcd.begin(16, 2);
