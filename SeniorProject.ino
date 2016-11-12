@@ -1,5 +1,9 @@
   #include <LiquidCrystal.h>
 
+  double ororx(void);
+  void oroprint(long velocity, long rpm);
+  void orodrive(double rpm);
+
 LiquidCrystal lcd(12,8,2,4,5,6);
 
   int highinput = 3;
@@ -30,16 +34,34 @@ void setup() {
 
 void loop() {
   // put your main code here, to run repeatedly:
-  double rpm;
-  double velocity;
+  long rpm;
+  long velocity;
 
-  for(rpm=0;rpm<450;rpm=rpm+50){
-    velocity=rpm/60*0.33274;
-    lcd.setCursor(5, 0);
-    lcd.print(rpm);
-    lcd.setCursor(7,1);
-    lcd.print(velocity);
-    delay(750);
-  }
+  rpm = ororx();
+  
+  velocity=rpm/60*0.33274;
+
+  oroprint(velocity, rpm);
+
+  orodrive(rpm);
+}
+
+void oroprint(long velocity, long rpm){
+  lcd.setCursor(5, 0);
+  lcd.print(rpm);
+  lcd.setCursor(7,1);
+  lcd.print(velocity);
+  delay(750);
+}
+
+long ororx(void){
+  rpm = pulseIn(pin,HIGH,11000);
+  rpm = (rpm - 1513.25) + 16;
+
+  return rpm
+}
+
+void orodrive(long rpm){
   
 }
+
