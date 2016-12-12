@@ -1,8 +1,8 @@
   #include <LiquidCrystal.h>
 
-  double ororx(void);
   void oroprint(long velocity, long rpm);
-  void orodrive(double rpm);
+
+  int velocity, rpm;
 
 LiquidCrystal lcd(12,8,2,4,5,6);
 
@@ -14,11 +14,13 @@ LiquidCrystal lcd(12,8,2,4,5,6);
 void setup() {
   // put your setup code here, to run once:
 
+  //Set up output pins for PWM signals (3,9,10,11)
   pinMode(highinput, OUTPUT);
   pinMode(highinput2, OUTPUT);
   pinMode(lowinput, OUTPUT);
   pinMode(lowinput2, OUTPUT);
 
+  
   analogWrite(highinput, 127);
   analogWrite(highinput2, 127);
   digitalWrite(lowinput, HIGH);
@@ -34,16 +36,11 @@ void setup() {
 
 void loop() {
   // put your main code here, to run repeatedly:
-  long rpm;
-  long velocity;
-
-  rpm = ororx();
   
   velocity=rpm/60*0.33274;
 
   oroprint(velocity, rpm);
 
-  orodrive(rpm);
 }
 
 void oroprint(long velocity, long rpm){
@@ -54,14 +51,4 @@ void oroprint(long velocity, long rpm){
   delay(750);
 }
 
-long ororx(void){
-  rpm = pulseIn(pin,HIGH,11000);
-  rpm = (rpm - 1513.25) + 16;
-
-  return rpm
-}
-
-void orodrive(long rpm){
-  
-}
 
